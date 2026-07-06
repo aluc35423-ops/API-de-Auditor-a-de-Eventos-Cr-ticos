@@ -12,8 +12,12 @@ const auditoriaSchema = new mongoose.Schema({
     },
     nombre: {
         type: String,
-        required: true,
-    }
+        required: true
+    },
+    tarjeta_bancaria: {
+        type: String,
+        required: true
+    },
 }, {
     timestamps: true
 });
