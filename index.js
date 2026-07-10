@@ -10,7 +10,6 @@ const auditoriaRoutes = require('./src/routes/auditoriaRoutes');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpecs = require('./src/config/swagger');
 
-
 //SWAGGER
 const app = express();
 const PORT = process.env.PORT || 5100;
@@ -23,6 +22,10 @@ connectDB();
 
 // Swagger UI
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+
+app.get('/', (req, res) => {
+    res.redirect('/api-docs');
+});
 
 //Rutas base de RUGP
 app.use("/api/auditoria", auditoriaRoutes);
