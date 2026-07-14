@@ -10,7 +10,7 @@ const options = {
     },
     servers: [
         {
-            url: 'https://TU_PROYECTO_EN_RENDER.onrender.comhttps://api-de-auditor-a-de-eventos-cr-ticos.onrender.com',
+            url: 'https://api-de-auditor-a-de-eventos-cr-ticos.onrender.com',
             description: 'Servidor de Producción'
         },
         {
