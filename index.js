@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 });
 
 //Rutas base de RUGP
-app.use("/api/auditoria", auditoriaRoutes);
+app.use("/api/usuarios", auditoriaRoutes);
 
 app.listen(PORT, () => {
     console.log(`Servidor de API-AEC corriendo en: http://localhost:${PORT}`);
