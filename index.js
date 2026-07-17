@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./src/config/database');
@@ -26,6 +27,9 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 app.get('/', (req, res) => {
     res.redirect('/api-docs');
 });
+
+const appTokenValidator = require('./src/middlewares/appTokenValidator');
+app.use(appTokenValidator);
 
 //Rutas base de RUGP
 app.use("/api/usuarios", auditoriaRoutes);

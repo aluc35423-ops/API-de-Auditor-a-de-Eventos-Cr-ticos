@@ -20,13 +20,19 @@ const options = {
     ],
     components: {
         securitySchemes: {
-            bearerAuth: {
-                type: 'http',
-                scheme: 'bearer',
-                bearerFormat: 'JWT',
-        },
+            appTokenAuth: {
+                type: 'apiKey',
+                in: 'header',
+                name: 'app-token',
+                description: 'Pega aquí tu App Token generado'
+            },
         },
     },
+    security: [
+            {
+                appTokenAuth: []
+            }
+        ]
     },
     apis: ['./src/routes/**/*.js'], 
 };
