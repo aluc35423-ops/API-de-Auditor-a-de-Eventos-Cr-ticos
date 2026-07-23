@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
 const connectDB = require('./src/config/database');
 
 //RUTAS
@@ -14,6 +15,19 @@ const swaggerSpecs = require('./src/config/swagger');
 //SWAGGER
 const app = express();
 const PORT = process.env.PORT || 5100;
+
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            // Permitimos scripts y estilos en línea necesarios para renderizar Swagger UI
+            scriptSrc: ["'self'", "'unsafe-inline'"],
+            styleSrc: ["'self'", "'unsafe-inline'"],
+            // Permitimos esquemas data y el validador de Swagger para las imágenes
+            imgSrc: ["'self'", "data:", "https://validator.swagger.io"]
+        }
+    }
+}));
 
 app.use(cors());
 app.use(express.json()); // Communication
@@ -31,7 +45,7 @@ app.get('/', (req, res) => {
 const appTokenValidator = require('./src/middlewares/appTokenValidator');
 app.use(appTokenValidator);
 
-//Rutas base de RUGP
+//Rutas base de API-AEC
 app.use("/api/usuarios", auditoriaRoutes);
 
 app.listen(PORT, () => {
